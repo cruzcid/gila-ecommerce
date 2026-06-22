@@ -1,3 +1,9 @@
+# IDE
+.metals/
+.bsp/
+.idea/
+*.iml
+
 # Logs
 logs
 *.log
