@@ -10,11 +10,10 @@ import type {
 } from '../types';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080/api',
+  baseURL: '/api',
   headers: { 'Content-Type': 'application/json' },
 });
 
-// Products
 export const getProducts = (search?: string, category?: string) => {
   const params: Record<string, string> = {};
   if (search) params.search = search;
@@ -42,7 +41,6 @@ export const importProductsCsv = (file: File) => {
   });
 };
 
-// Orders
 export const getOrders = () => api.get<Order[]>('/orders');
 
 export const getOrder = (id: number) => api.get<Order>(`/orders/${id}`);
@@ -50,9 +48,7 @@ export const getOrder = (id: number) => api.get<Order>(`/orders/${id}`);
 export const createOrder = (data: OrderRequest) =>
   api.post<Order>('/orders', data);
 
-// Payment
 export const checkout = (data: PaymentRequest) =>
   api.post<PaymentResponse>('/payments/checkout', data);
 
-// Import logs
 export const getImportLogs = () => api.get<ImportLog[]>('/import-logs');
