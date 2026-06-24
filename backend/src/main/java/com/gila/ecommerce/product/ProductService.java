@@ -86,7 +86,6 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    @Transactional
     public List<ProductResponse> importFromCsv(MultipartFile file) {
         List<ProductResponse> imported = new ArrayList<>();
         List<String> skipped = new ArrayList<>();

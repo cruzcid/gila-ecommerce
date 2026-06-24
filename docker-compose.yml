@@ -10,6 +10,12 @@ services:
       - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gila -d ecommerce"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
 
   mongo:
     image: mongo:7
@@ -20,7 +26,37 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')", "--quiet"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: gila_backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/ecommerce
+      SPRING_DATASOURCE_USERNAME: gila
+      SPRING_DATASOURCE_PASSWORD: gila123
+      SPRING_MONGODB_URI: mongodb://mongo:27017/ecommerce_logs
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    container_name: gila_frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
 
 volumes:
-  postgres_data:    
+  postgres_data:
   mongo_data:
