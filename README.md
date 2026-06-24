@@ -45,7 +45,7 @@ This document outlines the core technical decisions, architectural patterns, and
 
 
 ## How to run the project 
-### Executing docker compose up --build -d
+### Executing: docker compose up --build -d
 Is completely sufficient to compile, link, and spin up your entire architecture in the background, provided the prerequisites are installed.
 ### Technical Prerequisites
 * **The Core Docker Engine & Docker Compose Plugin**
