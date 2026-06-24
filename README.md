@@ -42,3 +42,12 @@ This document outlines the core technical decisions, architectural patterns, and
 
 ### Alternative 4: Full Microservices Architecture (Splitting Auth, Inventory, and Orders into distinct applications)
 * **Why it was rejected:** Breaking down a streamlined e-commerce application into distributed microservices introducing independent runtime instances adds massive architectural complexity premature to its growth stage. Distributed architectures require implementing complex transaction synchronization patterns (like the Saga Pattern), strict event-driven message brokers (Kafka/RabbitMQ), and localized independent routing layers. Given the current velocity requirements and clean domain isolation already achieved via the database split, a highly modular monolithic backend minimizes networking overhead, simplifies testing, and vastly reduces localized deployment friction.
+
+
+## How to run the project 
+### Executing docker compose up --build -d
+Is completely sufficient to compile, link, and spin up your entire architecture in the background, provided the prerequisites are installed.
+### Technical Prerequisites
+* **The Core Docker Engine & Docker Compose Plugin**
+* **The project downloaded in your local machine**
+* **Sufficient Host Port Availability. Ports 80, 8080, 5434, 27017**
