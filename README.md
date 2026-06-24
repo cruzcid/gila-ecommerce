@@ -4,6 +4,8 @@ This document outlines the core technical decisions, architectural patterns, and
 
 ---
 
+CSV file was downloaded on 21 Jun 2026 at 8:27 am
+
 ## Key Technical Decisions
 
 ### 1. Polyglot Persistence: PostgreSQL + MongoDB Dual Storage
